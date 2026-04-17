@@ -1,0 +1,26 @@
+[project]
+name = "api-dashboard"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "ksiki",email = "j.kolyasha@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "python-decouple==3.8",
+    "pandas>=2.2.3",
+    "openpyxl==3.1.5",
+    "asyncpg>=0.31.0",
+    "sqlalchemy[asyncio]>=2.0.0,<2.1.0",
+    "fastapi>=0.135.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.0.0,<3.0.0"
+]
+
+[tool.poetry]
+package-mode = false 
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
