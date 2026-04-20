@@ -104,13 +104,14 @@ services:
       postgres-dwh:
         condition: service_healthy
     environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - PYTHONPATH=/app/src
+      - DB_URL=${DB_URL}
+      - DEBUG=${DEBUG}
+      - PYTHONPATH=/app
     volumes:
       - ./api-service/src:/app/src:z
     ports:
       - "8000:8000"
-    command: python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    command: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
 volumes:
   airflow_db_data:
