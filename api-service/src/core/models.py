@@ -47,6 +47,7 @@ class UserAnalyticsORM(BaseORM):
     first_purchases_date_id: Mapped[int] = mapped_column(ForeignKey("dwh.d_calendar.id"), nullable=False)
     last_purchases_date_id: Mapped[int] = mapped_column(ForeignKey("dwh.d_calendar.id"), nullable=False)
     total_purchases: Mapped[int] = mapped_column(BigInteger, nullable=False)
+    service_purchases: Mapped[int] = mapped_column(BigInteger, nullable=False)
     sub_purchases: Mapped[int] = mapped_column(BigInteger, nullable=False)
     mtx_purchases: Mapped[int] = mapped_column(BigInteger, nullable=False)
     total_revenue: Mapped[int] = mapped_column(BigInteger, nullable=False)

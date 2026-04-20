@@ -20,6 +20,6 @@ SETTINGS: Final[Settings] = Settings(
 
 
 PREFIXES: Final[Prefixes] = Prefixes(
-    user="/user/",
-    sales="/sales/"
+    user="/user",
+    sales="/sales"
 )
