@@ -4,13 +4,13 @@ from pydantic_settings import BaseSettings
 
 
 class Prefixes(BaseSettings):
-    api: str
+    version_prefix: str
     users: str
     sales: str
 
 
 PREFIXES: Final[Prefixes] = Prefixes(
-    api="/api/v1",
+    version_prefix="/v1",
     users="/users",
     sales="/sales"    
 )

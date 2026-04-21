@@ -1,0 +1,38 @@
+import logging
+from typing import Final
+
+from fastapi import APIRouter, Body, Request
+from fastapi.responses import JSONResponse
+
+from src.core.config import SETTINGS 
+
+
+ROUTER: Final[APIRouter] = APIRouter()
+LOG: Final[logging.Logger] = logging.getLogger(__name__)
+
+
+@ROUTER.post("/status")
+async def toggle_maintenance(
+    request: Request,
+    action: str = Body(embed=True)
+):
+    if action not in ["start", "stop"]:
+        return JSONResponse(
+            status_code=400, 
+            content={
+                "detail": f"Invalid action '{action}'. Use 'start' or 'stop'."
+            }
+        )
+
+    if action == "start":
+        request.app.state.is_maintenance = True
+        LOG.warning("Maintenance mode enabled")
+        return {
+            "status": "maintenance mode enabled"
+        }
+
+    request.app.state.is_maintenance = False
+    LOG.warning("Maintenance mode disabled")
+    return {
+        "status": "maintenance mode disabled"
+    }
