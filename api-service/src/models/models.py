@@ -31,6 +31,14 @@ class CityORM(BaseORM):
     country_id: Mapped[int] = mapped_column(ForeignKey("dwh.d_country.id"), nullable=False)
 
 
+class ProductORM(BaseORM):
+    __tablename__ = "d_product"
+
+    str_id: Mapped[str] = mapped_column(String(100), primary_key=True)
+    name: Mapped[str] = mapped_column(String(100), nullable=True)
+    category: Mapped[str] = mapped_column(String(100), nullable=True)
+
+
 class UserORM(BaseORM):
     __tablename__ = "d_user"
 
@@ -54,3 +62,15 @@ class UserAnalyticsORM(BaseORM):
     sub_revenue: Mapped[int] = mapped_column(BigInteger, nullable=False)
     mtx_revenue: Mapped[int] = mapped_column(BigInteger, nullable=False)
     
+
+class SalesORM(BaseORM):
+    __tablename__ = "f_sales"
+
+    date_id: Mapped[int] = mapped_column(ForeignKey("dwh.d_calendar.id"), primary_key=True)
+    hour: Mapped[int] = mapped_column(SmallInteger, primary_key=True)
+    prod_id: Mapped[str] = mapped_column(String(100), ForeignKey("dwh.d_product.str_id"), primary_key=True)
+    total_sales: Mapped[int] = mapped_column(BigInteger, nullable=False)
+    count_sales_with_sub: Mapped[int] = mapped_column(BigInteger, nullable=False)
+    count_sales_without_sub: Mapped[int] = mapped_column(BigInteger, nullable=False)
+    count_refunded: Mapped[int] = mapped_column(BigInteger, nullable=False)
+    total_revenue: Mapped[int] = mapped_column(BigInteger, nullable=False)
