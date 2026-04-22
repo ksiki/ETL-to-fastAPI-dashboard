@@ -25,9 +25,9 @@ create table if not exists dwh.d_city(
 );
 
 create table if not exists dwh.d_product(
-    str_id varchar(100),
-    name varchar(100),
-    category varchar(100),
+    str_id varchar(100) not null,
+    name varchar(100) not null,
+    category varchar(100) not null,
     constraint d_product_pk primary key (str_id)
 );
 
